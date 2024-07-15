@@ -23,14 +23,28 @@ const CreateProduct = () => {
 
     const {isPending, isError, data, error} = useQuery({queryKey:['categories'], queryFn:fetchCategories})
 
-if (isPending) return <p>Loading categories ...</p>;
-if (isError) return <p> Error loading categories</p>
+    // if (isPending) return <p>Loading categories ...</p>;
+    // if (isError) return <p> Error loading categories</p>
 
-const handleCategoryId = (e) => {       
-    setSelectedCategoryId(e.target.value);
-  };
+    const queryClient = useQueryClient();
+    
+    const createProductMutation = useMutation({
+        mutationFn: createProduct,
+        onSuccess: () => {
+          queryClient.invalidateQueries({queryKey:['products']});
+          navigate('/');
+        },
+        onError: (error) => {
+          console.error('Error creating products', error);
+        },
+      });
 
-  const handleProduct = (e) => {
+
+    const handleCategoryId = (e) => {       
+        setSelectedCategoryId(e.target.value);
+    };
+
+    const handleProduct = (e) => {
     e.preventDefault();
     // const newProduct = {
     //   title,
@@ -55,18 +69,7 @@ const handleCategoryId = (e) => {
     createProductMutation.mutate(formData);
   }
 
-const queryClient = useQueryClient();
 
-        const createProductMutation = useMutation({
-        mutationFn: createProduct,
-        onSuccess: () => {
-          queryClient.invalidateQueries({queryKey:['products']});
-          navigate('/');
-        },
-        onError: (error) => {
-          console.error('Error creating products', error);
-        },
-      });
 
       
    
@@ -96,7 +99,7 @@ const queryClient = useQueryClient();
           </select>
 
 
-<button onClick={handleProduct} className="bg-blue-500 text-white py-1">Create Product</button>
+<button onClick={handleProduct} className="bg-blue-500 text-white py-1">{isPending ? "Creating ..." : "Create Product"}</button>
 {/* {createProductMutation.isError && <h3 className="text-red-500 text-md">Something went wrong</h3>} */}
           
         </div>)}
