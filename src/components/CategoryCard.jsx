@@ -2,7 +2,7 @@ import React from 'react'
 
 const CategoryCard = ({name, imageUrl}) => {
   return (
-    <div className='border border-blue-300 rounded-xl w-[320px] h-[400px]'>
+    <div className='rounded-xl w-[320px] h-[400px]'>
    
   
 <div className='relative'>
