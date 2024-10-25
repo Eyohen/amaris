@@ -99,8 +99,11 @@ import { URL } from "../url"
 import { RiEyeLine, RiEyeOffLine } from "react-icons/ri";
 import { useAuth } from '../context/AuthContext';
 
-const Login = () => {
+const Register = () => {
   const { login } = useAuth();
+  const [firstName, setFirstName] = useState('')
+  const [lastName, setLastName] = useState('')
+  const [phone, setPhone] = useState('')
   const [email, setEmail] = useState('')
   const [error, setError] = useState(false)
   const [password, setPassword] = useState('')
@@ -115,7 +118,7 @@ const Login = () => {
   const handleSubmit = async () => {
     setIsLoading(true)
     try {
-      const res = await axios.post(URL + "/api/auth/login", { email, password })
+      const res = await axios.post(URL + "/api/auth/login", {firstName, lastName, email, phone, password })
 
       const { accessToken, user } = res.data;
 
@@ -124,7 +127,7 @@ const Login = () => {
         login(user)
         setError(false)
         console.log(res.data)
-        navigate("/")
+        navigate("/login")
       }
 
     }
@@ -141,11 +144,36 @@ const Login = () => {
       <div className='max-w-md w-full space-y-8'>
         <div>
           <h2 className='mt-6 text-center text-3xl font-extrabold text-gray-900'>
-            Login To Your Account
+            Create your Account
           </h2>
+          <p className='text-gray-400 text-center mt-2'>Join Amariamour and start enjoying our service</p>
         </div>
         <form className='mt-8 space-y-6' onSubmit={(e) => { e.preventDefault(); handleSubmit(); }}>
           <div className='rounded-md shadow-sm -space-y-px'>
+          <div>
+              <label htmlFor='first name' className='sr-only'>First Name</label>
+              <input
+                id='firstName'
+                name='firstName'
+                type='text'
+                required
+                className='appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm'
+                placeholder='First Name'
+                onChange={(e) => setFirstName(e.target.value)}
+              />
+            </div>
+            <div>
+              <label htmlFor='last name' className='sr-only'>Last Name</label>
+              <input
+                id='lastName'
+                name='lastName'
+                type='text'  
+                required
+                className='appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm'
+                placeholder='Last Name'
+                onChange={(e) => setLastName(e.target.value)}
+              />
+            </div>
             <div>
               <label htmlFor='email-address' className='sr-only'>Email address</label>
               <input
@@ -154,9 +182,21 @@ const Login = () => {
                 type='email'
                 autoComplete='email'
                 required
-                className='appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm'
+                className='appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm'
                 placeholder='Email address'
                 onChange={(e) => setEmail(e.target.value)}
+              />
+            </div>
+            <div>
+              <label htmlFor='phone' className='sr-only'>Phone Number</label>
+              <input
+                id='phone'
+                name='phone'
+                type='text'  
+                required
+                className='appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm'
+                placeholder='Phone Number'
+                onChange={(e) => setPhone(e.target.value)}
               />
             </div>
             <div className='relative'>
@@ -181,14 +221,6 @@ const Login = () => {
             </div>
           </div>
 
-          <div className='flex items-center justify-between'>
-            <div className='text-sm'>
-              <Link to='/forgotpassword' className='font-medium text-blue-600 hover:text-blue-500'>
-                Forgot your password?
-              </Link>
-            </div>
-          </div>
-
           <div>
             <button
               type='submit'
@@ -203,7 +235,7 @@ const Login = () => {
                   </svg>
                 </span>
               ) : null}
-              {isLoading ? 'Loading...' : 'Sign in'}
+              {isLoading ? 'Loading...' : 'Sign Up'}
             </button>
           </div>
         </form>
@@ -211,9 +243,9 @@ const Login = () => {
         {error && <p className='mt-2 text-center text-sm text-red-600'>Something went wrong. Please try again.</p>}
 
         <p className='mt-2 text-center text-sm text-gray-600'>
-          Don't have an account?{' '}
-          <Link to='/register' className='font-medium text-blue-600 hover:text-blue-500'>
-            Create an account
+          Already have an account?{' '}
+          <Link to='/login' className='font-medium text-blue-600 hover:text-blue-500'>
+            Log in
           </Link>
         </p>
       </div>
@@ -221,4 +253,4 @@ const Login = () => {
   )
 }
 
-export default Login
+export default Register

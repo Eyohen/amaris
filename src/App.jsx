@@ -31,6 +31,9 @@ import About from './pages/About'
 import Contact from './pages/Contact'
 import PurchaseTable from './pages/PurchaseTable'
 import Author from './pages/Author'
+import ForgotPassword from './pages/ForgotPassword'
+import Register from './pages/Register'
+import Profile from './pages/Profile'
 // import Register from './pages/Register'
 // import Payment from './pages/Payment'
 // import Shop from './pages/Shop'
@@ -55,6 +58,9 @@ const App = () => {
     <Route exact path="/blogs" element={<Blogs/>}/>
     <Route exact path="/cart" element={<Cart/>}/>
     <Route exact path="/login" element={<Login/>}/>
+    <Route exact path="/register" element={<Register/>}/>
+    <Route exact path="/forgotpassword" element={<ForgotPassword/>}/>
+    <Route exact path="/profile" element={<Profile/>}/>
     <Route exact path="/admin" element={<AdminLogin/>}/>
     <Route exact path="/review" element={<Review/>}/>
     <Route exact path="/blogdetails/:id" element={<BlogDetails/>}/>

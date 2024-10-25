@@ -74,7 +74,6 @@ const Navbar = () => {
           <Link to='/products' className='font-medium text-lg hover:text-gray-600'>Products</Link>
           <Link to='/about' className='font-medium text-lg hover:text-gray-600'>About</Link>
           <Link to='/blogs' className='font-medium text-lg hover:text-gray-600'>Blog</Link>
-          <Link to='/contact' className='font-medium text-lg hover:text-gray-600'>Giving</Link>
           <Link to='/contact' className='font-medium text-lg hover:text-gray-600'>Contact</Link>
         </div>
 
@@ -87,7 +86,7 @@ const Navbar = () => {
               {getTotalQuantity()}
             </span>
           </div>
-          <GoPerson size={23} className='cursor-pointer hover:text-gray-600' />
+          <Link to={'/profile'}><GoPerson size={23} className='cursor-pointer hover:text-gray-600' /></Link>
         </div>
       </div>
     </div>

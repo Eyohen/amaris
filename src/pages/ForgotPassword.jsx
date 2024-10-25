@@ -99,7 +99,7 @@ import { URL } from "../url"
 import { RiEyeLine, RiEyeOffLine } from "react-icons/ri";
 import { useAuth } from '../context/AuthContext';
 
-const Login = () => {
+const ForgotPassword = () => {
   const { login } = useAuth();
   const [email, setEmail] = useState('')
   const [error, setError] = useState(false)
@@ -141,8 +141,9 @@ const Login = () => {
       <div className='max-w-md w-full space-y-8'>
         <div>
           <h2 className='mt-6 text-center text-3xl font-extrabold text-gray-900'>
-            Login To Your Account
+            Forgot Password
           </h2>
+          <p className='text-gray-400 mt-2 text-center'>Enter your email to receive a password reset link</p>
         </div>
         <form className='mt-8 space-y-6' onSubmit={(e) => { e.preventDefault(); handleSubmit(); }}>
           <div className='rounded-md shadow-sm -space-y-px'>
@@ -159,7 +160,7 @@ const Login = () => {
                 onChange={(e) => setEmail(e.target.value)}
               />
             </div>
-            <div className='relative'>
+            {/* <div className='relative'>
               <label htmlFor='password' className='sr-only'>Password</label>
               <input
                 id='password'
@@ -178,16 +179,16 @@ const Login = () => {
               >
                 {isPasswordVisible ? <RiEyeOffLine className='h-5 w-5 text-gray-400' /> : <RiEyeLine className='h-5 w-5 text-gray-400' />}
               </button>
-            </div>
-          </div>
+            </div> */}
+          </div> 
 
-          <div className='flex items-center justify-between'>
+          {/* <div className='flex items-center justify-between'>
             <div className='text-sm'>
               <Link to='/forgotpassword' className='font-medium text-blue-600 hover:text-blue-500'>
                 Forgot your password?
               </Link>
             </div>
-          </div>
+          </div> */}
 
           <div>
             <button
@@ -203,7 +204,7 @@ const Login = () => {
                   </svg>
                 </span>
               ) : null}
-              {isLoading ? 'Loading...' : 'Sign in'}
+              {isLoading ? 'Loading...' : 'Send Reset Link'}
             </button>
           </div>
         </form>
@@ -211,9 +212,9 @@ const Login = () => {
         {error && <p className='mt-2 text-center text-sm text-red-600'>Something went wrong. Please try again.</p>}
 
         <p className='mt-2 text-center text-sm text-gray-600'>
-          Don't have an account?{' '}
-          <Link to='/register' className='font-medium text-blue-600 hover:text-blue-500'>
-            Create an account
+          Remember your password?{' '}
+          <Link to='/login' className='font-medium text-blue-600 hover:text-blue-500'>
+            Log in
           </Link>
         </p>
       </div>
@@ -221,4 +222,4 @@ const Login = () => {
   )
 }
 
-export default Login
+export default ForgotPassword
