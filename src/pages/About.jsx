@@ -8,6 +8,7 @@ import greenstar from '../assets/greenstar.png'
 import bluebook from '../assets/bluebook.png'
 import weirdstuff from '../assets/weirdstuff.png'
 import blogsubscribe from '../assets/blogsubscribe.png'
+import group3 from '../assets/Group3.png'
 
 const About = () => {
   return (
@@ -69,10 +70,38 @@ const About = () => {
                         <p className='font-thin text-sm text-[#072D1C] mt-4'>Exclusive Offers: Subscribers enjoy access to limited edition products, early releases, and special discounts. We value our community and strive to provide an unparalleled self-care experience.</p>
                 </div>
 
+        </div>
+
+        <p className='text-center text-xl font-thin pt-9'>OUR VALUES</p>
+
+        <div className='border-2 rounded-xl px-6 py-12 mt-9'>
+
+        <p className='font-semibold text-lg'>Empowerment: <span className='font-normal'>We empower women to take control of their well-being and make self-care a priority in their lives.</span></p>
+
+        <p className='font-semibold text-lg mt-6'>Quality: <span className='font-normal'>We are committed to delivering the highest quality products and services that meet rigorous standards.</span></p>
+
+        <p className='font-semibold text-lg mt-6'>Community: <span className='font-normal'>We foster a supportive community of like-minded women dedicated to mutual well-being and growth.</span></p>
+
+        <p className='font-semibold text-lg mt-6'>Balance: <span className='font-normal'>We help women achieve a harmonious balance between their professional responsibilities and personal needs.</span></p>
 
         </div>
 
 </div>
+
+<div className='py-2 px-[240px] mt-2'>
+
+        <p className='font-semibold text-2xl'>Join the Amaris Amour Community</p>
+
+        <p className='mt-6 max-w-[1200px] text-lg'>Amaris Amour is more than just a subscription service; it's a community of women dedicated to supporting each other's healing and well-being. Join us as we make self-care an integral part of your life and experience the serenity and empowerment that come with it.</p>
+
+        <p className='mt-6 text-lg'>Discover the transformative power of self-care with Amaris Amour.</p>
+
+        <div className='flex justify-center'><img src={group3} className='' /></div>
+
+
+</div>
+
+
 
 
 

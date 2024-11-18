@@ -99,12 +99,41 @@ import { URL } from "../url"
 import { RiEyeLine, RiEyeOffLine } from "react-icons/ri";
 import { useAuth } from '../context/AuthContext';
 
+
+const locations = [
+  {
+    id: 1,
+    location:"Ikorodu"
+  },
+  { 
+    id: 2,
+    location:"Surulere"
+  },
+  {
+    id: 3,
+    location:"Magodo"
+  },
+  {
+    id: 4,
+    location:"Lekki"
+  },
+  {
+    id: 5,
+    location:"Ikeja"
+  }
+]
+
+
+
 const Register = () => {
   const { login } = useAuth();
   const [firstName, setFirstName] = useState('')
   const [lastName, setLastName] = useState('')
   const [phone, setPhone] = useState('')
   const [email, setEmail] = useState('')
+  const [address, setAddress] = useState('')
+  const [lga, setLGA] = useState('')
+  const [Country, setCountry] = useState('')
   const [error, setError] = useState(false)
   const [password, setPassword] = useState('')
   const [isLoading, setIsLoading] = useState(false);
@@ -118,13 +147,13 @@ const Register = () => {
   const handleSubmit = async () => {
     setIsLoading(true)
     try {
-      const res = await axios.post(URL + "/api/auth/login", {firstName, lastName, email, phone, password })
+      const res = await axios.post(URL + "/api/auth/register", {firstName, lastName, email, phone, password, lga, address })
 
-      const { accessToken, user } = res.data;
+      // const { accessToken, user } = res.data;
 
       if (res.status == 200) {
-        localStorage.setItem("access_token", accessToken)
-        login(user)
+        // localStorage.setItem("access_token", accessToken)
+        // login(user)
         setError(false)
         console.log(res.data)
         navigate("/login")
@@ -183,7 +212,7 @@ const Register = () => {
                 autoComplete='email'
                 required
                 className='appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm'
-                placeholder='Email address'
+                placeholder='Email'
                 onChange={(e) => setEmail(e.target.value)}
               />
             </div>
@@ -199,6 +228,56 @@ const Register = () => {
                 onChange={(e) => setPhone(e.target.value)}
               />
             </div>
+            <div>
+              <label htmlFor='email-address' className='sr-only'>Address</label>
+              <input
+                id='address'
+                name='address'
+                type='text'
+                autoComplete='address'
+                required
+                className='appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm'
+                placeholder='Address'
+                onChange={(e) => setAddress(e.target.value)}
+              />
+            </div>
+            <div>
+              <label htmlFor='email-address' className='sr-only'>Local Government</label>
+              <select
+                   value={lga}
+                  onChange={(e) => setLGA(e.target.value)}
+                  className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm"
+                    >
+                    {locations.map((item) => (
+                  <option key={item.id} value={item.location}>
+                    {item.location}
+                </option>
+              ))}
+            </select>
+              {/* <input
+                id='email-address'
+                name='email'
+                type='text'
+                autoComplete='email'
+                required
+                className='appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm'
+                placeholder='Local Government'
+                onChange={(e) => setEmail(e.target.value)}
+              /> */}
+            </div>
+            {/* <div>
+              <label htmlFor='email-address' className='sr-only'>Country</label>
+              <input
+                id='email-address'
+                name='email'
+                type='email'
+                autoComplete='email'
+                required
+                className='appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm'
+                placeholder='Country'
+                onChange={(e) => setCountry(e.target.value)}
+              />
+            </div> */}
             <div className='relative'>
               <label htmlFor='password' className='sr-only'>Password</label>
               <input

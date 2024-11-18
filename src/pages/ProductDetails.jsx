@@ -370,6 +370,8 @@ import { Toaster, toast } from 'react-hot-toast'
 import { CartContext } from '../context/CartContext'
 import { useAuth } from '../context/AuthContext'
 import { URL } from '../url'
+import Navbar from '../components/Navbar'
+import { PaystackButton } from 'react-paystack';
 
 const StarRating = ({ rating, onRatingChange }) => {
   return (
@@ -430,7 +432,7 @@ const ProductDetails = () => {
   const handleBuyNow = async () => {
     setIsSubmitting(true)
     try {
-      await axios.post(`${URL}/api/purchases/create`, {
+      await axios.post(`${URL}/api/cart/create`, {
         quantity,
         productId: product.id,
         title: product.title,
@@ -442,7 +444,8 @@ const ProductDetails = () => {
         fname: user?.fname,
         userId: user?.id,
       })
-      toast.success('Purchase successful')
+      navigate('/cart')
+      // toast.success('Purchase successful')
     } catch (error) {
       console.error('Error creating purchase', error)
       toast.error('Failed to complete purchase')
@@ -474,6 +477,8 @@ const ProductDetails = () => {
   }
 
   return (
+    <>
+          <Navbar/>
     <div className="container mx-auto px-4 py-8">
       <Toaster />
       <div className="bg-white shadow-lg rounded-lg overflow-hidden">
@@ -546,14 +551,9 @@ const ProductDetails = () => {
                   onClick={handleBuyNow}
                   disabled={isSubmitting}
                 >
-                  {isSubmitting ? 'Processing...' : 'Buy Now'}
+                  {isSubmitting ? 'Processing...' : 'Add To Cart'}
                 </button>
-                <button
-                  className="flex-1 border border-gray-300 py-2 px-4 rounded hover:bg-gray-100"
-                  onClick={handleAddToCart}
-                >
-                  <MdShoppingCart className="inline mr-2" /> Add to Cart
-                </button>
+              
                 <button className="border border-gray-300 p-2 rounded hover:bg-gray-100">
                   <MdFavoriteBorder />
                 </button>
@@ -593,6 +593,7 @@ const ProductDetails = () => {
         </div>
       </div>
     </div>
+    </>
   )
 }
 

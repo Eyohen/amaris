@@ -34,6 +34,9 @@ import Author from './pages/Author'
 import ForgotPassword from './pages/ForgotPassword'
 import Register from './pages/Register'
 import Profile from './pages/Profile'
+import PopUp from './components/PopUp'
+import FifteenPopup from './pages/FifteenPopup'
+import Checkout from './pages/Checkout'
 // import Register from './pages/Register'
 // import Payment from './pages/Payment'
 // import Shop from './pages/Shop'
@@ -53,6 +56,7 @@ const App = () => {
     <Route exact path="/test" element={<Test/>}/>
     <Route exact path="/createproduct" element={<CreateProduct/>}/>
     <Route exact path="/productdetails/:id" element={<ProductDetails/>}/>
+    <Route exact path="/checkout" element={<Checkout/>}/>
     <Route exact path="/categories/:id" element={<Categories/>}/>
     <Route exact path="/products" element={<Products/>}/>
     <Route exact path="/blogs" element={<Blogs/>}/>
@@ -79,6 +83,8 @@ const App = () => {
     <Route exact path="/about" element={<About/>}/>
     <Route exact path="/contact" element={<Contact/>}/>
     <Route exact path="/author" element={<Author/>}/>
+    <Route exact path="/popup" element={<PopUp/>}/>
+    <Route exact path="/poptest" element={<FifteenPopup/>}/>
     
     {/* <Route exact path="/register" element={<Register/>}/>
     <Route exact path="/contact" element={<Contact/>}/>

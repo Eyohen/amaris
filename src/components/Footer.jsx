@@ -141,8 +141,9 @@ const Footer = () => {
           <div className='flex flex-col sm:flex-row justify-between items-center'>
             <div className='flex space-x-6 mb-4 sm:mb-0'>
               <a href="#" className='text-gray-600 hover:text-gray-900'>Facebook</a>
-              <a href="#" className='text-gray-600 hover:text-gray-900'>Instagram</a>
+              <a href="https://www.instagram.com/amaris_amour_tranquil/" className='text-gray-600 hover:text-gray-900'>Instagram</a>
               <a href="#" className='text-gray-600 hover:text-gray-900'>Twitter</a>
+              <a href="https://www.linkedin.com/in/eluaguuzoamakaecommercestressmgtproducts/" className='text-gray-600 hover:text-gray-900'>LinkedIn</a>
             </div>
             <div className='text-sm text-gray-600'>
               <Link to="/privacy" className='hover:text-gray-900 mr-4'>Privacy Policy</Link>
