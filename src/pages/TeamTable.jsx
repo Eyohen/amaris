@@ -4,7 +4,7 @@ import { URL } from '../url'
 import Sidebar from '../components/Sidebar'
 
 
-const Dashboard = () => {
+const TeamTable = () => {
   const [search, setSearch] = useState('');
   const [user, setUser] = useState([])
 
@@ -36,13 +36,15 @@ const Dashboard = () => {
     }
   }
 
+const filteredUser = user?.filter(u => u.role === 'admin');
+
   return (
     <div>
         <Sidebar />
         <div className='flex-1 ml-[300px]'>
         
         <div className='p-9'>
-        <p className='font-bold text-3xl text-blue-700'>Users</p>
+        <p className='font-bold text-3xl text-blue-700'>Team Members</p>
       <div className="mb-4 text-right">
         <input
           type="text"
@@ -62,22 +64,18 @@ const Dashboard = () => {
             <th scope="col" className="py-4 px-11 ">Last Name</th>
             <th scope="col" className="py-4 px-11 ">Email</th>
             <th scope="col" className="py-4 px-11 ">Phone</th>
-            <th scope="col" className="py-4 px-11 ">Address</th>
-            <th scope="col" className="py-4 px-11 ">State</th>
-            <th scope="col" className="py-4 px-11 ">Country</th>
+           
    
           </tr>
         </thead>
         <tbody>
-          {user.map((user, index) => (
+          {filteredUser?.map((user, index) => (
             <tr key={index} className=' border-b border-gray-300'>
               <td className="py-4 px-11">{user.firstName}</td>
               <td className="py-4 px-11">{user.lastName}</td>
               <td className="py-4 px-11">{user.email}</td>
               <td className="py-4 px-11">{user?.phone ? user.phone : "not yet"}</td>
-              <td className="py-4 px-11">{user.address}</td>
-              <td className="py-4 px-11">{user.state}</td>
-              <td className="py-4 px-11">{user.country}</td>
+       
     
             </tr>
           ))}
@@ -90,4 +88,4 @@ const Dashboard = () => {
   )
 }
 
-export default Dashboard
+export default TeamTable

@@ -37,11 +37,13 @@ import Profile from './pages/Profile'
 import PopUp from './components/PopUp'
 import FifteenPopup from './pages/FifteenPopup'
 import Checkout from './pages/Checkout'
-// import Register from './pages/Register'
-// import Payment from './pages/Payment'
-// import Shop from './pages/Shop'
-// import Cart from './pages/Cart'
-// import Profile from './components/Profile'
+import ViewPurchase from './pages/ViewPurchase'
+import { LGAList } from './pages/LGAList'
+import { CreateLGA } from './pages/CreateLGA'
+import { EditLGA } from './pages/EditLGA'
+import AdminRegister from './pages/AdminRegister'
+import TeamTable from './pages/TeamTable'
+
 
 
 
@@ -65,12 +67,22 @@ const App = () => {
     <Route exact path="/register" element={<Register/>}/>
     <Route exact path="/forgotpassword" element={<ForgotPassword/>}/>
     <Route exact path="/profile" element={<Profile/>}/>
+    <Route exact path="/adminregister" element={<AdminRegister/>}/>
     <Route exact path="/admin" element={<AdminLogin/>}/>
     <Route exact path="/review" element={<Review/>}/>
     <Route exact path="/blogdetails/:id" element={<BlogDetails/>}/>
     <Route exact path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>}/>
+    <Route exact path="/teamtable" element={<TeamTable />}/>
     <Route exact path="/producttable" element={<ProductTable />}/>
     <Route exact path="/purchasetable" element={<PurchaseTable />}/>
+
+    <Route exact path="/lga" element={<LGAList />}/>
+    <Route exact path="/createlga" element={<CreateLGA />}/>
+    <Route exact path="/editlga/:id" element={<EditLGA />}/>
+
+
+
+    <Route exact path="/viewpurchase/:id" element={<ViewPurchase />}/>
     <Route exact path="/editproduct/:id" element={<EditProduct />}/>
     <Route exact path="/categorytable" element={<CategoryTable />}/>
     <Route exact path="/editcategory/:id" element={<EditCategory />}/>

@@ -7,7 +7,7 @@ import { RiEyeLine, RiEyeOffLine } from "react-icons/ri";
 import { useAuth } from '../context/AuthContext';
 
 
-const Register = () => {
+const AdminRegister = () => {
   const { login } = useAuth();
   const [firstName, setFirstName] = useState('')
   const [lastName, setLastName] = useState('')
@@ -40,7 +40,7 @@ const Register = () => {
   const handleSubmit = async () => {
     setIsLoading(true)
     try {
-      const res = await axios.post(URL + "/api/auth/register", {firstName, lastName, email, phone, password, lga, address })
+      const res = await axios.post(URL + "/api/auth/register", {firstName, lastName, email, phone, password, role:'admin' })
 
       // const { accessToken, user } = res.data;
 
@@ -49,7 +49,7 @@ const Register = () => {
         // login(user)
         setError(false)
         console.log(res.data)
-        navigate("/login")
+        navigate("/admin")
       }
 
     }
@@ -66,7 +66,7 @@ const Register = () => {
       <div className='max-w-md w-full space-y-8'>
         <div>
           <h2 className='mt-6 text-center text-3xl font-extrabold text-gray-900'>
-            Create your Account
+            Create Admin Account
           </h2>
           <p className='text-gray-400 text-center mt-2'>Join Amariamour and start enjoying our service</p>
         </div>
@@ -121,35 +121,7 @@ const Register = () => {
                 onChange={(e) => setPhone(e.target.value)}
               />
             </div>
-            <div>
-              <label htmlFor='email-address' className='sr-only'>Address</label>
-              <input
-                id='address'
-                name='address'
-                type='text'
-                autoComplete='address'
-                required
-                className='appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm'
-                placeholder='Address'
-                onChange={(e) => setAddress(e.target.value)}
-              />
-            </div>
-            <div>
-              <label htmlFor='lga' className='sr-only'>Town</label>
-              <select
-                   value={lga}
-                  onChange={(e) => setLGA(e.target.value)}
-                  className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm"
-                    >
-                        <option value="" disabled>Select a town</option>
-                    {lgarea?.map((item) => (
-                  <option key={item.id} value={item.lga}>
-                    {item.lga}
-                </option>
-              ))}
-            </select>
-       
-            </div>
+      
           
             <div className='relative'>
               <label htmlFor='password' className='sr-only'>Password</label>
@@ -205,4 +177,4 @@ const Register = () => {
   )
 }
 
-export default Register
+export default AdminRegister

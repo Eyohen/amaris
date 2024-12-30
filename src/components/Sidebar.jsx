@@ -59,10 +59,22 @@ const Sidebar = () => {
         <p className='py-1 text-center'>Products</p>
         </div></Link>
 
+        
+        <Link to={'/lga'}><div className='flex gap-x-3 items-center hover:bg-blue-200  px-2 mt-6 rounded'>
+        <GoPackage />
+        <p className='py-1 text-center'>Delivery Rates</p>
+        </div></Link>
+
         <Link to={'/blogtable'}><div className='flex gap-x-3 items-center hover:bg-blue-200  px-2 mt-6 rounded'>
         <PiNotepad />
         <p className='py-1 text-center'>Blog</p>
         </div></Link>
+
+        <Link to={'/teamtable'}> <div className='flex gap-x-3 items-center hover:bg-blue-200  px-2 mt-6 rounded'>
+        <FiUsers className='' />
+          <p className='py-1 text-center'>Team Members</p>
+          </div></Link>
+
 
         <Link to={'/settings'}><div className='flex gap-x-3 items-center hover:bg-blue-200  px-2 mt-6 rounded'>
         <IoSettingsOutline className=''/>

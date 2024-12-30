@@ -1,15 +1,11 @@
 import React, {useEffect, useState} from 'react'
 import Navbar from '../components/Navbar'
 import grocery from '../assets/grocery.jpg'
-import model from '../assets/model.jpeg'
-import { IoRibbonOutline } from "react-icons/io5"
-import { RiEBike2Line } from "react-icons/ri"
-import { TbPackages } from "react-icons/tb"
 import { IoIosArrowRoundForward } from "react-icons/io"
 import ProductCard from '../components/ProductCard'
-import { Link } from 'react-router-dom'
+import { Link, Navigate } from 'react-router-dom'
 import CategoryCard from '../components/CategoryCard'
-import { CartContext } from '../context/CartContext'
+
 import { FaChevronRight, FaChevronLeft } from "react-icons/fa6"
 import BlogCard from '../components/BlogCard'
 import { URL } from '../url'
@@ -21,24 +17,31 @@ import hero3 from '../assets/hero3.png'
 import { FaMinus } from "react-icons/fa"
 import { TiMinusOutline } from "react-icons/ti"
 import PopUp from '../components/PopUp'
+import { useNavigate, useParams } from 'react-router-dom'
+import { BsArrowRight } from "react-icons/bs";
+import group4 from '../assets/Group4.png'
+
 
 const slides = [
   {
     title: "",
     subtitle: "",
     text: "",
-    image: hero
+    // button:'first button'
   },
   {
     title: "",
     subtitle: "Surprise her with a gift that lasts beyond the moment",
     text: "",
-    image: hero3
+    image: hero3,
+    button:'Shop Now'
   },
 ]
 
 const Home = () => {
 const [showPopup, setShowPopup] = useState(false)
+
+const navigate = useNavigate()
 
 useEffect(() => {
   //show popup after a short delay when component mounts
@@ -157,154 +160,137 @@ const handleClosePopup = () => {
 
   return (
     <div className="min-h-screen overflow-x-hidden font-light">
-      <Navbar />
-      
-      {/* Hero Section */}
-      <div className="relative h-[50vh] md:h-[70vh] w-full">
-        {slides?.map((slide, index) => (
-          <div
-            key={index}
-            className={`absolute top-0 left-0 w-full h-full transition-opacity duration-500 ${
-              index === currentSlide ? 'opacity-100' : 'opacity-0'
-            }`}
-            style={{
-              backgroundImage: `url(${slide.image})`,
-              backgroundSize: 'cover',
-              backgroundPosition: 'center'
-            }}
-          >
-            <div className="absolute inset-0 bg-black bg-opacity-50 px-4 md:px-12 lg:px-20 flex items-center">
-              <div className="w-full max-w-6xl mx-auto">
-                <p className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-6xl text-white font-thin mb-4 max-w-[800px]">
-                  {slide.subtitle}
-                </p>
-                <h2 className="text-base sm:text-lg md:text-xl lg:text-2xl text-white mb-4 max-w-[800px]">
-                  {slide.text}
-                </h2>
-              </div>
-            </div>
-          </div>
-        ))}
-
-        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex gap-x-4 justify-center z-50">
-          {slides.map((_, index) => (
-            <button
-              key={index}
-              onClick={() => goToSlide(index)}
-              className="focus:outline-none"
-            >
-              {index === currentSlide ? (
-                <FaMinus size={24} color="white" />
-              ) : (
-                <TiMinusOutline size={24} color="white" className="opacity-50 hover:opacity-100 transition-opacity" />
-              )}
-            </button>
-          ))}
+    <Navbar />
+    
+    {/* Hero Section */}
+    <div className='flex flex-col lg:flex-row justify-between px-4 md:px-8 lg:px-64 mt-6 lg:mt-12'>
+      <div className='text-center lg:text-left'>
+        <div className='flex flex-wrap justify-center lg:justify-start gap-2'>
+          <button className='border border-violet-400 px-4 rounded-2xl'>Mindfulness</button>
+          <button className='border border-violet-400 px-4 rounded-2xl'>Meditation</button>
         </div>
+        
+        <div className='mt-4'>
+          <p className='text-[#1F2A44] font-normal text-4xl lg:text-6xl'>EMPOWER</p>
+          <p className='text-[#1F2A44] text-4xl lg:text-6xl mt-2'>
+            <span className='font-bold'>ELEVATE,</span>
+            <span className='font-normal'> THRIVE</span>
+          </p>
+        </div>
+
+        <div className='mt-2 space-y-1'>
+          <p className='text-[#FFB300] text-xl lg:text-2xl'>Self-care, wellness, and personal</p>
+          <p className='text-[#FFB300] text-xl lg:text-2xl'>development products.</p>
+          <p className='mt-2 text-lg lg:text-2xl'>Find Clarity and Focus with our premium self-care</p>
+          <p className='text-lg lg:text-2xl'>solutions designed for empowerment.</p>
+        </div>
+
+        <button 
+          className='bg-[#1F2A44] text-white text-lg lg:text-xl flex items-center justify-center lg:justify-start gap-x-9 px-3 rounded-full py-2 mt-6 lg:mt-9 mx-auto lg:mx-0 w-fit'
+          onClick={() => navigate('/products')}
+        >
+          Shop Now
+          <span className='bg-white rounded-full p-3'>
+            <BsArrowRight color='#1F2A44'/>
+          </span>
+        </button>
+
+        <p className='font-medium mt-6 lg:mt-9 text-base lg:text-lg text-center lg:text-left'>
+          Join the Amaris Amour <span className='text-blue-600'>Community!</span>
+        </p>
       </div>
 
+      <img src={group4} className='w-full lg:w-auto mt-8 lg:mt-0 max-w-lg mx-auto'/>
+    </div>
 
-      <div className="relative h-[50vh] md:h-[70vh] w-full">
+    {/* Categories Section */}
+    <div className="px-4 md:px-12 lg:px-20 py-8 lg:py-12">
+      <h2 className="text-center text-[#1F2A44] text-2xl md:text-3xl lg:text-5xl mb-4">Our Product Range</h2>
+      <p className="text-gray-500 text-sm md:text-base lg:text-lg text-center mb-8 lg:mb-12 max-w-2xl mx-auto">
+        Discover our stunning products designed to uplift and empower every woman, helping you feel your absolute best!
+      </p>
+      
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
+        {categories.map(data => (
+          <Link key={data.id} to={`/categories/${data.id}`}>
+            <CategoryCard name={data.name} imageUrl={data?.imageUrl}/>
+          </Link>
+        ))}
+      </div>
+    </div>
 
+    {/* Best Sellers Section */}
+    <div className="px-4 md:px-12 lg:px-20 py-8 lg:py-12 bg-gray-50">
+      <p className="text-center text-base md:text-lg lg:text-xl text-gray-400 mb-2">SHOP OUR BEST SELLERS</p>
+      <p className="text-center text-lg md:text-xl lg:text-2xl text-gray-600 mb-8 lg:mb-12">
+        Unlock your inner beauty with our self care collection
+      </p>
 
+      <div className="relative max-w-6xl mx-auto">
+        <button 
+          onClick={prevSlide} 
+          className="absolute left-0 md:-left-12 top-1/2 -translate-y-1/2 bg-gray-200 p-2 rounded-full z-10 hidden md:block"
+        >
+          <FaChevronLeft/>
+        </button>
 
-      {/* Categories Section */}
-      <div className="px-4 md:px-12 lg:px-20 py-12">
-        <h2 className="text-center text-[#1F2A44] text-3xl md:text-5xl mb-4">Our Product Range</h2>
-        <p className="text-gray-500 text-base md:text-lg text-center mb-12 max-w-2xl mx-auto">
-          Discover our stunning products designed to uplift and empower every woman, helping you feel your absolute best!
-        </p>
-        
-        <div></div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-          {categories.map(data => (
-            <Link key={data.id} to={`/categories/${data.id}`}>
-              <CategoryCard name={data.name} imageUrl={data?.imageUrl}/>
+        <div className="flex flex-col md:flex-row gap-6 justify-center">
+          {products?.slice(currentIndex, currentIndex + (window.innerWidth >= 768 ? 3 : 1))?.map(d => (
+            <Link key={d.id} to={`/productdetails/${d.id}`} className="w-full md:w-1/3">
+              <ProductCard 
+                title={d.title} 
+                imageUrl={d?.imageUrl} 
+                price={d.price} 
+                discount={d?.discount} 
+                description={d.description}
+              />
             </Link>
           ))}
         </div>
+
+        <button 
+          onClick={nextSlide} 
+          className="absolute right-0 md:-right-12 top-1/2 -translate-y-1/2 bg-gray-200 p-2 rounded-full z-10 hidden md:block"
+        >
+          <FaChevronRight/>
+        </button>
       </div>
-
-      </div>
-
-      {/* Popup */}
-      {showPopup && <PopUp onClose={handleClosePopup} />}
-
-
-
-
-      {/* Best Sellers Section */}
-      <div className="px-4 md:px-12 lg:px-20 py-12 bg-gray-50">
-        <p className="text-center text-lg md:text-xl text-gray-400 mb-2">SHOP OUR BEST SELLERS</p>
-        <p className="text-center text-xl md:text-2xl text-gray-600 mb-12">
-          Unlock your inner beauty with our self care collection
-        </p>
-
-        <div className="relative max-w-6xl mx-auto">
-          <button 
-            onClick={prevSlide} 
-            className="absolute left-0 md:-left-12 top-1/2 -translate-y-1/2 bg-gray-200 p-2 rounded-full z-10"
-          >
-            <FaChevronLeft/>
-          </button>
-
-          <div className="flex flex-col md:flex-row gap-6 justify-center overflow-hidden">
-            {products?.slice(currentIndex, currentIndex + (window.innerWidth >= 768 ? 3 : 1))?.map(d => (
-              <Link key={d.id} to={`/productdetails/${d.id}`}>
-                <ProductCard 
-                  title={d.title} 
-                  imageUrl={d?.imageUrl} 
-                  price={d.price} 
-                  discount={d?.discount} 
-                  description={d.description}
-                />
-              </Link>
-            ))}
-          </div>
-
-          <button 
-            onClick={nextSlide} 
-            className="absolute right-0 md:-right-12 top-1/2 -translate-y-1/2 bg-gray-200 p-2 rounded-full z-10"
-          >
-            <FaChevronRight/>
-          </button>
-        </div>
-      </div>
-
-      {/* Subscribe Section */}
-      <div className="bg-[#E1F5FF] px-4 md:px-12 lg:px-20 py-12">
-        <div className="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-12 lg:gap-20 max-w-6xl mx-auto">
-          <div className="text-center md:text-left max-w-lg">
-            <h2 className="text-[#1F2A44] text-3xl md:text-4xl lg:text-5xl font-normal mb-4">
-              Subscribe to our Blog
-            </h2>
-            <p className="text-[#1F2A44] text-base md:text-lg mb-8">
-              Want to Start Your Journey to Self-Care and Elevate Your Well-Being?
-            </p>
-
-            <div className="relative max-w-md mx-auto md:mx-0">
-              <input 
-                type="email" 
-                placeholder="Enter your e-mail" 
-                className="w-full px-6 py-3 rounded-full border border-purple-500 bg-white shadow-lg focus:outline-none"
-              />
-              <button className="absolute right-2 top-1/2 -translate-y-1/2 bg-[#1F2A44] p-3 rounded-full">
-                <IoIosArrowRoundForward color="white" size={20}/>
-              </button>
-            </div>
-          </div>
-          
-          <img 
-            src={blogsubscribe} 
-            alt="Subscribe" 
-            className="max-w-full md:max-w-sm lg:max-w-md"
-          />
-        </div>
-      </div>
-
-      <Footer/>
     </div>
-  )
+
+    {/* Subscribe Section */}
+    <div className="bg-[#E1F5FF] px-4 md:px-12 lg:px-20 py-8 lg:py-12">
+      <div className="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-8 lg:gap-20 max-w-6xl mx-auto">
+        <div className="text-center md:text-left max-w-lg">
+          <h2 className="text-[#1F2A44] text-2xl md:text-3xl lg:text-5xl font-normal mb-4">
+            Subscribe to our Blog
+          </h2>
+          <p className="text-[#1F2A44] text-sm md:text-base lg:text-lg mb-6 lg:mb-8">
+            Want to Start Your Journey to Self-Care and Elevate Your Well-Being?
+          </p>
+
+          <div className="relative max-w-md mx-auto md:mx-0">
+            <input 
+              type="email" 
+              placeholder="Enter your e-mail" 
+              className="w-full px-4 md:px-6 py-2 md:py-3 rounded-full border border-purple-500 bg-white shadow-lg focus:outline-none"
+            />
+            <button className="absolute right-2 top-1/2 -translate-y-1/2 bg-[#1F2A44] p-2 md:p-3 rounded-full">
+              <IoIosArrowRoundForward color="white" size={20}/>
+            </button>
+          </div>
+        </div>
+        
+        <img 
+          src={blogsubscribe} 
+          alt="Subscribe" 
+          className="max-w-full md:max-w-sm lg:max-w-md mt-6 md:mt-0"
+        />
+      </div>
+    </div>
+
+    <Footer/>
+  </div>
+);
 }
 
 export default Home

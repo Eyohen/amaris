@@ -13,24 +13,16 @@ const CreateCategory = () => {
     const [isLoading, setIsLoading] = useState(false)
     
 
-
     const handleCategory = async (e) => {
-
     setIsLoading(true)
-
     e.preventDefault();
 
     const formData = new FormData();
     formData.append('name', name);
-    // formData.append('price', price);
-    // formData.append('description', description);
-    // formData.append('color', color);
-    // formData.append('size', size);
-    // formData.append('categoryId', selectedCategoryId);
+  
     if (file) {
       formData.append('imageUrl', file);
     }
-
 
     const res = await axios.post(`${URL}/api/categories/create`, formData, {
       headers:{
@@ -40,15 +32,8 @@ const CreateCategory = () => {
     if (res){
       setIsLoading(false)
       navigate('/categorytable')
-    }
-  
-  }
-
-
-
-      
-   
-
+    }  
+  }   
     
   return (
     <div className="w-full">
@@ -56,7 +41,7 @@ const CreateCategory = () => {
       <div className="items-center h-[100vh] justify-center flex w-full">
  <div className="flex flex-col gap-y-6">
         <p className="text-2xl text-center">Create Category</p>
-          <input onChange={(e)=>setName(e.target.value)} className="border border-black px-2 py-1 w-full md:w-[500px]" placeholder="Name" />
+          <input onChange={(e)=>setName(e.target.value)} className="border border-gray-200 rounded-lg px-2 py-2 w-full md:w-[500px]" placeholder="Name" />
           <label className='cursor-pointer'>
                   <input className='text-blue-500 underline' type="file" onChange={(e) => setFile(e.target.files[0])} />
           
@@ -65,7 +50,8 @@ const CreateCategory = () => {
       
 
 
-<button onClick={handleCategory} className="bg-blue-500 text-white py-1">{isLoading ? "Creating ..." : "Create Category"}</button>
+<button onClick={handleCategory} className="bg-blue-500 text-white py-2 rounded-md">{isLoading ? "Creating ..." : "Create Category"}</button>
+<button onClick={() => navigate(-1)} className="bg-gray-300 py-2 rounded-md">Cancel</button>
 
           
         </div>

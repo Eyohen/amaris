@@ -16,7 +16,7 @@ const Products = () => {
     const fetchProducts = async() => {
         try {
             const res = await axios.get(`${URL}/api/products`)
-            console.log(res.data.Product)
+            console.log("see products",res.data)
             setProducts(res.data)
         }
         catch(err) {
